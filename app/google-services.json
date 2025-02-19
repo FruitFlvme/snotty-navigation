@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "781969000537",
+    "project_id": "snotty-navigation",
+    "storage_bucket": "snotty-navigation.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781969000537:android:42fb2617b0f14f2b264948",
+        "android_client_info": {
+          "package_name": "com.fruitflvme.snotty_navigation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmHEFglLI2lWByGvbdz0qZgz9Y_NCfY-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

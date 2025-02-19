@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_settings_theme_dialog_title">Select a theme</string>
+    <string name="ui_settings_theme_dialog_confirm" translatable="false">@string/ui_design_save</string>
+    <string name="ui_settings_theme_dialog_dismiss" translatable="false">@string/ui_design_cancel</string>
+    <string name="ui_settings_theme_title">Theme</string>
+    <string name="ui_settings_theme_value_dark_name">Dark</string>
+    <string name="ui_settings_theme_value_device_name">Device</string>
+    <string name="ui_settings_theme_value_light_name">Light</string>
+    <string name="ui_settings_title">Settings</string>
+</resources>
