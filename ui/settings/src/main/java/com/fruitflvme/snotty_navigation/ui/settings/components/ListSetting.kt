@@ -1,4 +1,4 @@
-package com.fruitflvme.snotty_navigation.ui.settings
+package com.fruitflvme.snotty_navigation.ui.settings.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -39,6 +39,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.fruitflvme.snotty_navigation.ui.design.modifier.placeholder
 import com.fruitflvme.snotty_navigation.ui.design.theme.SnottyTheme
+import com.fruitflvme.snotty_navigation.ui.settings.R
 
 @Composable
 fun <T> ListSetting(

@@ -22,6 +22,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import com.fruitflvme.snotty_navigation.model.core.measurement.Units
+import com.fruitflvme.snotty_navigation.model.settings.CoordinatesFormat
+import com.fruitflvme.snotty_navigation.model.settings.LocationAccuracyVisibility
 import com.fruitflvme.snotty_navigation.model.settings.Theme
 import com.fruitflvme.snotty_navigation.ui.design.theme.SnottyTheme
 import com.fruitflvme.snotty_navigation.ui.design.R as UiDesignR
@@ -31,7 +34,13 @@ import com.fruitflvme.snotty_navigation.ui.design.R as UiDesignR
 fun SettingsComponent(
     theme: Theme?,
     onThemeChange: (Theme) -> Unit,
-    contentPadding: PaddingValues
+    units: Units?,
+    onUnitsChange: (Units) -> Unit,
+    coordinatesFormat: CoordinatesFormat?,
+    onCoordinatesFormatChange: (CoordinatesFormat) -> Unit,
+    contentPadding: PaddingValues,
+    locationAccuracyVisibility: LocationAccuracyVisibility?,
+    onLocationAccuracyVisibilityChange: (LocationAccuracyVisibility) -> Unit,
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     Scaffold(
@@ -52,14 +61,28 @@ fun SettingsComponent(
                 .padding(innerContentPadding)
                 .nestedScroll(scrollBehavior.nestedScrollConnection)
                 .verticalScroll(rememberScrollState())
-                .padding(16.dp),
-//                .padding(dimensionResource(UiDesignR.dimen.ui_design_standard_padding)),
+                .padding(dimensionResource(UiDesignR.dimen.ui_design_standard_padding)),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             ThemeSetting(
                 value = theme,
                 onValueChange = onThemeChange,
+                modifier = Modifier.fillMaxWidth()
+            )
+            UnitsSetting(
+                value = units,
+                onValueChange = onUnitsChange,
+                modifier = Modifier.fillMaxWidth()
+            )
+            CoordinatesFormatSetting(
+                value = coordinatesFormat,
+                onValueChange = onCoordinatesFormatChange,
+                modifier = Modifier.fillMaxWidth()
+            )
+            LocationAccuracyVisibilitySetting(
+                value = locationAccuracyVisibility,
+                onValueChange = onLocationAccuracyVisibilityChange,
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -72,8 +95,14 @@ private fun LoadingPreviews() {
     SnottyTheme {
         SettingsComponent(
             theme = null,
-            contentPadding = PaddingValues(),
-            onThemeChange = {}
+            onThemeChange = {},
+            units = null,
+            onUnitsChange = {},
+            coordinatesFormat = null,
+            onCoordinatesFormatChange = {},
+            locationAccuracyVisibility = null,
+            onLocationAccuracyVisibilityChange = {},
+            contentPadding = PaddingValues()
         )
     }
 }
@@ -83,9 +112,15 @@ private fun LoadingPreviews() {
 private fun LoadedPreviews() {
     SnottyTheme {
         SettingsComponent(
-            theme = Theme.DEVICE,
-            contentPadding = PaddingValues(),
+            theme = null,
             onThemeChange = {},
+            units = null,
+            onUnitsChange = {},
+            coordinatesFormat = null,
+            onCoordinatesFormatChange = {},
+            locationAccuracyVisibility = null,
+            onLocationAccuracyVisibilityChange = {},
+            contentPadding = PaddingValues()
         )
     }
 }

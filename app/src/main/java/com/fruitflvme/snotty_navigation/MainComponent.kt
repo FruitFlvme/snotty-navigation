@@ -46,6 +46,8 @@ import com.fruitflvme.snotty_navigation.model.settings.Theme
 import com.fruitflvme.snotty_navigation.ui.core.activity
 import com.fruitflvme.snotty_navigation.ui.core.nav.NavDestination
 import com.fruitflvme.snotty_navigation.ui.design.theme.SnottyTheme
+import com.fruitflvme.snotty_navigation.ui.location.LocationDestination
+import com.fruitflvme.snotty_navigation.ui.location.LocationHelpDestination
 import com.fruitflvme.snotty_navigation.ui.location.LocationPermissionRequiredContent
 import com.fruitflvme.snotty_navigation.ui.settings.SettingsDestination
 import com.fruitflvme.snotty_navigation.ui.settings.SettingsViewModel
@@ -78,15 +80,15 @@ fun MainComponent(
         val locationPermissions = remember { listOf(ACCESS_FINE_LOCATION) }
         val locationPermissionsState = rememberMultiplePermissionsState(locationPermissions)
         val isCompactWidthWindow = windowWidthSizeClass == WindowWidthSizeClass.Compact
-        val mainNavDestinations = setOf(SettingsDestination)
-        val snackBarHostState = remember { SnackbarHostState() }
+        val mainNavDestinations = setOf(LocationDestination, SettingsDestination)
+        val snackbarHostState = remember { SnackbarHostState() }
         if (locationPermissionsState.allPermissionsGranted) {
             Scaffold(
                 bottomBar = bottomBar@{
                     if (!isCompactWidthWindow) return@bottomBar
                     MainNavigationBar(navHostController, mainNavDestinations)
                 },
-                snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
+                snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
             ) { contentPadding ->
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     if (!isCompactWidthWindow) {
@@ -98,12 +100,18 @@ fun MainComponent(
                     }
                     NavHost(
                         navHostController,
-                        startDestination = SettingsDestination.route,
+                        startDestination = LocationDestination.route,
                         enterTransition = { EnterTransition.None },
                         exitTransition = { ExitTransition.None }
                     ) {
+                        with(LocationDestination) {
+                            composable(navHostController, snackbarHostState, contentPadding)
+                        }
                         with(SettingsDestination) {
-                            composable(navHostController, snackBarHostState, contentPadding)
+                            composable(navHostController, snackbarHostState, contentPadding)
+                        }
+                        with(LocationHelpDestination) {
+                            composable(navHostController, snackbarHostState, contentPadding)
                         }
                     }
                 }

@@ -8,12 +8,14 @@ import com.fruitflvme.snotty_navigation.model.location.Location
 import com.fruitflvme.snotty_navigation.ui.core.State
 import com.fruitflvme.snotty_navigation.ui.core.asStates
 import com.fruitflvme.snotty_navigation.ui.core.flow.ForViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
+@HiltViewModel
 class LocationViewModel @Inject constructor(
     locator: Locator,
     settings: SettingsRepository

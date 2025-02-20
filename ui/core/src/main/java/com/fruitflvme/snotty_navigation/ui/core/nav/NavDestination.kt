@@ -13,7 +13,7 @@ interface NavDestination {
     context(NavGraphBuilder)
     fun composable(
         navController: NavController,
-        snackBarHostState: SnackbarHostState,
+        snackbarHostState: SnackbarHostState,
         contentPadding: PaddingValues
     )
 

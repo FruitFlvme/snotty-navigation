@@ -30,7 +30,6 @@ import com.fruitflvme.snotty_navigation.ui.location.format.UtmFormatter
 import com.fruitflvme.snotty_navigation.ui.location.locals.LocalCoordinatesFormatter
 
 object LocationDestination : NavDestination.MainNavDestination {
-
     override val route = "location"
     override val navIcon = Icons.Rounded.MyLocation
     override val navLabelRes = R.string.ui_location_title
@@ -38,7 +37,7 @@ object LocationDestination : NavDestination.MainNavDestination {
     context(NavGraphBuilder)
     override fun composable(
         navController: NavController,
-        snackBarHostState: SnackbarHostState,
+        snackbarHostState: SnackbarHostState,
         contentPadding: PaddingValues
     ) {
         composable(
@@ -63,20 +62,20 @@ object LocationDestination : NavDestination.MainNavDestination {
                             CoordinatesFormat.UTM -> UtmFormatter(context, locale)
                         }
             ) {
-//                val coordinatesFormatter = LocalCoordinatesFormatter.current
-//                LocationView(
-//                    locationState,
-//                    settingsState,
-//                    contentPadding,
-//                    snackbarHostState,
-//                    onShareClick = click@{ coordinates ->
-//                        val formattedCoordinates =
-//                            coordinates?.let { coordinatesFormatter.formatForCopy(it) }
-//                                ?: return@click
-//                        shareCoordinates(context, formattedCoordinates)
-//                    },
-//                    onHelpClick = { navController.navigate(LocationHelpDestination.route) }
-//                )
+                val coordinatesFormatter = LocalCoordinatesFormatter.current
+                LocationComponent(
+                    locationState,
+                    settingsState,
+                    contentPadding,
+                    snackbarHostState,
+                    onShareClick = click@{ coordinates ->
+                        val formattedCoordinates =
+                            coordinates?.let { coordinatesFormatter.formatForCopy(it) }
+                                ?: return@click
+                        shareCoordinates(context, formattedCoordinates)
+                    },
+                    onHelpClick = { navController.navigate(LocationHelpDestination.route) }
+                )
             }
         }
     }

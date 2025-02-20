@@ -26,7 +26,7 @@ data object SettingsDestination : NavDestination.MainNavDestination {
     context(NavGraphBuilder)
     override fun composable(
         navController: NavController,
-        snackBarHostState: SnackbarHostState,
+        snackbarHostState: SnackbarHostState,
         contentPadding: PaddingValues
     ) {
         composable(
@@ -41,14 +41,20 @@ data object SettingsDestination : NavDestination.MainNavDestination {
 //                val compassMode by viewModel.compassMode.collectAsStateWithLifecycle()
 //                val compassNorthVibration by viewModel.compassNorthVibration
 //                    .collectAsStateWithLifecycle()
-//                val coordinatesFormat by viewModel.coordinatesFormat.collectAsStateWithLifecycle()
-//                val locationAccuracyVisibility by viewModel.locationAccuracyVisibility
-//                    .collectAsStateWithLifecycle()
             val theme by viewModel.theme.collectAsStateWithLifecycle()
-//                val units by viewModel.units.collectAsStateWithLifecycle()
+            val units by viewModel.units.collectAsStateWithLifecycle()
+            val coordinatesFormat by viewModel.coordinatesFormat.collectAsStateWithLifecycle()
+            val locationAccuracyVisibility by viewModel.locationAccuracyVisibility
+                .collectAsStateWithLifecycle()
             SettingsComponent(
                 theme = theme,
                 onThemeChange = viewModel::onThemeChange,
+                units = units,
+                onUnitsChange = viewModel::onUnitsChange,
+                coordinatesFormat = coordinatesFormat,
+                onCoordinatesFormatChange = viewModel::onCoordinatesFormatChange,
+                locationAccuracyVisibility = locationAccuracyVisibility,
+                onLocationAccuracyVisibilityChange = viewModel::onLocationAccuracyVisibilityChange,
                 contentPadding = contentPadding,
             )
         }

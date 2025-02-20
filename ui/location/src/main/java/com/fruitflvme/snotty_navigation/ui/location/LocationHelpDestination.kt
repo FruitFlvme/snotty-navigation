@@ -18,7 +18,7 @@ object LocationHelpDestination : NavDestination {
     context(NavGraphBuilder)
     override fun composable(
         navController: NavController,
-        snackBarHostState: SnackbarHostState,
+        snackbarHostState: SnackbarHostState,
         contentPadding: PaddingValues
     ) {
         composable(
